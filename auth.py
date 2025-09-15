@@ -58,5 +58,5 @@ class Login(Resource):
         if not user or not check_password_hash(user.password_hash, data['password']):
             return {'message': 'Invalid credentials'}, 401
 
-        access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity=str(user.id))
         return {'access_token': access_token}, 200
